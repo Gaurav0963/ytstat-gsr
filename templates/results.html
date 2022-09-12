@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <title>YouTube Channel Data</title>
+
+
+</head>
+
+<style>
+  .form {
+    margin: auto;
+    text-align: center;
+  }
+
+  .comment {
+    margin: auto;
+    text-align: center;
+  }
+
+  .table {
+    width: 99%;
+    /* text-align: center; */
+    border-collapse: collapse;
+    font-size: 0.9em;
+    min-width: 700px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin: auto;
+  }
+
+
+  h2 {
+    text-align: center;
+    text-decoration-color: #000000;
+    font-family: system-ui, -apple-system;
+    color: #000000;
+  }
+
+  /* .content-table {
+    border-collapse: collapse;
+    margin: 0 0;
+    font-size: 0.9em;
+    min-width: 700px;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin: auto;
+  } */
+
+  .table thead tr {
+    background-color: #009879;
+    /* background-color: rgb(25, 98, 52); */
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    font-family: system-ui, -apple-system;
+    font-size: medium;
+  }
+
+  /* .content-table th,
+  .content-table td {
+    padding: 12px 15px;
+  } */
+
+  .content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    font-family: system-ui, -apple-system;
+  }
+
+  .content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+
+  .content-table tbody tr:last-of-type {
+    background-color: 2px solid #009879;
+  }
+
+  .btn.btn-outline-dark.btn-sm {
+    color: #ffffff;
+  }
+
+  .link {
+    text-decoration: none;
+    color: #000000
+  }
+
+  .link:hover {
+    text-decoration: none;
+    color: #f3f3f3;
+
+  }
+</style>
+
+<body>
+  <h2><span style="color: red;">{{reviews[0]['author']}}</span><br>CHANNEL STATISTICS</h2>
+
+  <table class="table" width="99%">
+    <thead class="table-dark">
+      <tr>
+        <th>S.No</th>
+        <th style="color: red;">Video URL</th>
+        <th>Title</th>
+        <th>Likes</th>
+        <th>Views</th>
+        <th>Thumbnail Link</th>
+        <th width="200px">Download & Comment</th>
+        <!-- <th>Comment</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for review in reviews %}
+      <tr>
+        <td>{{loop.index}}</td>
+        <td><a href="{{review['video_URL']}}" target="_blank">{{review['video_URL']}}</a></td>
+        <td>{{review['Title']}}</td>
+        <td>{{review['Likes']}}</td>
+        <td>{{review['Views']}}</td>
+        <td><a href="{{review['Thumbnail_link']}}" target="_blank">{{review['Thumbnail_link']}}</a></td>
+        <td>
+          <button type="button" class="btn btn-outline-dark btn-sm mx=1"><a class="link"
+              href="/download/{{review['id']}}" target="_blank">Download</a></button>
+          <button type="button" class="btn btn-outline-dark btn-sm mx=1"><a class="link"
+              href="/comments/{{review['id']}}" target="_blank">Comment</a></button>
+        </td>
+        <!-- <td><a href="/comments/{{review['id']}}" target="_blank">Comment</a></td> -->
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
